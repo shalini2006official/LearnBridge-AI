@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8000/api';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 const getHeaders = () => {
   const token = localStorage.getItem('token');
@@ -248,7 +248,7 @@ export const api = {
   async uploadRAGDocument(file: File) {
     const formData = new FormData();
     formData.append('file', file);
-    
+
     const token = localStorage.getItem('token');
     const headers: Record<string, string> = {};
     if (token) {
