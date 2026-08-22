@@ -25,7 +25,7 @@ origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:3000",
-    "https://learn-bridge-ai.vercel.app",
+    "https://learn-bridge-p3qyeu4e3-shalini2006officials-projects.vercel.app",
 ]
 
 app.add_middleware(
