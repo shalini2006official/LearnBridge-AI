@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAccessibility } from '../hooks/useAccessibility';
-import { 
-  BookOpen, MessageSquare, Award, GitBranch, LayoutDashboard, Users, 
-  HelpCircle, LogOut, Sun, Moon, Sparkles, Sliders, Type, Flame, 
-  Volume2, VolumeX, Eye, Info, Activity, Calendar, Clock, X
+import {
+  BookOpen, MessageSquare, Award, GitBranch, LayoutDashboard, Users,
+  HelpCircle, LogOut, Sun, Moon, Sparkles, Sliders, Type, Flame,
+  Volume2, VolumeX, Eye, Info, Activity, Calendar, Clock
 } from 'lucide-react';
 
 interface LayoutProps {
@@ -64,10 +64,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className={`min-h-screen flex ${settings.liteMode ? '' : 'transition-colors duration-200'} bg-[#FFF9F3]/40 text-[#17233C]`}>
-      
+
       {/* Sidebar */}
       <aside className="w-64 border-r border-[#FF8A1F]/15 bg-white flex flex-col flex-shrink-0 z-20">
-        
+
         {/* Sidebar Logo */}
         <div className="p-6 flex items-center gap-2.5 border-b border-slate-100">
           <div className="bg-[#FF8A1F] p-2.5 rounded-xl text-white shadow-sm">
@@ -88,11 +88,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all group ${
-                  isActive
-                    ? 'bg-[#FFF7EF] border-l-4 border-[#F26B0F] text-[#F26B0F]'
-                    : 'text-[#52627A] hover:text-[#F26B0F] hover:bg-[#FFF5EA]'
-                }`}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all group ${isActive
+                  ? 'bg-[#FFF7EF] border-l-4 border-[#F26B0F] text-[#F26B0F]'
+                  : 'text-[#52627A] hover:text-[#F26B0F] hover:bg-[#FFF5EA]'
+                  }`}
               >
                 <Icon className={`w-4 h-4 transition-colors ${isActive ? 'text-[#F26B0F]' : 'text-[#64748B] group-hover:text-[#F26B0F]'}`} />
                 {item.label}
@@ -127,7 +126,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 bg-[#FFF9F3]/10">
-        
+
         {/* Header */}
         <header className="h-16 border-b border-slate-200/60 bg-white flex items-center justify-between px-6 z-10">
           <div className="flex items-center gap-4">
@@ -204,7 +203,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <Sliders className="w-4.5 h-4.5 text-[#FF8A1F]" />
                   Accessibility Controls
                 </h3>
-                <button 
+                <button
                   onClick={() => setShowAccessibilityMenu(false)}
                   className="text-[#52627A] hover:text-[#17233C] text-xs font-bold cursor-pointer"
                 >
@@ -223,11 +222,10 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                     <button
                       key={sz}
                       onClick={() => setFontSize(sz)}
-                      className={`text-xs py-1.5 capitalize rounded-lg font-bold transition-colors cursor-pointer ${
-                        settings.fontSize === sz
-                          ? 'bg-[#FF8A1F] text-white shadow-sm'
-                          : 'text-[#64748B] hover:bg-white'
-                      }`}
+                      className={`text-xs py-1.5 capitalize rounded-lg font-bold transition-colors cursor-pointer ${settings.fontSize === sz
+                        ? 'bg-[#FF8A1F] text-white shadow-sm'
+                        : 'text-[#64748B] hover:bg-white'
+                        }`}
                     >
                       {sz}
                     </button>
@@ -301,9 +299,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             <Link
               key={item.path}
               to={item.path}
-              className={`flex flex-col items-center justify-center py-1 transition-all ${
-                isActive ? 'text-[#F26B0F] scale-105 font-extrabold' : 'text-[#64748B]'
-              }`}
+              className={`flex flex-col items-center justify-center py-1 transition-all ${isActive ? 'text-[#F26B0F] scale-105 font-extrabold' : 'text-[#64748B]'
+                }`}
             >
               <Icon className="w-5 h-5" />
               <span className="text-[9px] mt-0.5">{item.label.split(' ')[0]}</span>

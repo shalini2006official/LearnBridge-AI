@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Flame, Calendar, Award, CheckCircle, AlertCircle, ArrowLeft } from 'lucide-react';
+import { Flame, Award, CheckCircle, AlertCircle, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export const ActivityStreak: React.FC = () => {
@@ -8,9 +8,7 @@ export const ActivityStreak: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const userJson = localStorage.getItem('user');
-  const user = userJson ? JSON.parse(userJson) : null;
-  const studentName = user?.name || 'Learner';
+
 
   useEffect(() => {
     const fetchProgress = async () => {
@@ -58,7 +56,7 @@ export const ActivityStreak: React.FC = () => {
   const calendarMonth = calendarToday.getMonth();
   const calendarFirstDay = new Date(calendarYear, calendarMonth, 1).getDay();
   const calendarDaysCount = new Date(calendarYear, calendarMonth + 1, 0).getDate();
-  
+
   const calendarMonthNames = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -69,7 +67,7 @@ export const ActivityStreak: React.FC = () => {
 
   return (
     <div className="space-y-6 max-w-4xl text-[#17233C]">
-      
+
       {/* Header */}
       <div className="flex items-center justify-between border-b pb-4">
         <div className="space-y-1">
@@ -92,7 +90,7 @@ export const ActivityStreak: React.FC = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
+
         <div className="p-5 rounded-2xl border border-[#E2E8F0] bg-white shadow-sm flex items-center justify-between">
           <div className="space-y-0.5">
             <p className="text-[9px] font-bold text-[#64748B] uppercase tracking-widest">Active Streak</p>
@@ -130,10 +128,10 @@ export const ActivityStreak: React.FC = () => {
 
       {/* Main Grid: Large Calendar & Summary Info */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
+
         {/* Large Calendar Card */}
         <div className="lg:col-span-2 p-6 rounded-2xl border border-[#E2E8F0] bg-white shadow-sm space-y-4">
-          
+
           <div className="flex items-center justify-between border-b pb-2">
             <span className="font-extrabold text-base text-[#17233C]">
               {calendarMonthNames[calendarMonth]} {calendarYear}
@@ -153,20 +151,19 @@ export const ActivityStreak: React.FC = () => {
             {Array.from({ length: calendarDaysCount }, (_, i) => i + 1).map(day => {
               const dateStr = `${calendarYear}-${String(calendarMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
               const isToday = day === calendarToday.getDate() && calendarMonth === calendarToday.getMonth() && calendarYear === calendarToday.getFullYear();
-              
-              const hasQuiz = quizDates.includes(dateStr) || 
-                              (quizDates.length === 0 && [15, 18, 20].includes(day));
+
+              const hasQuiz = quizDates.includes(dateStr) ||
+                (quizDates.length === 0 && [15, 18, 20].includes(day));
 
               return (
-                <div 
+                <div
                   key={day}
-                  className={`py-2.5 rounded-xl flex flex-col items-center justify-center relative font-bold transition-all ${
-                    hasQuiz 
-                      ? 'bg-gradient-to-tr from-[#FF8A1F] to-[#F26B0F] text-white shadow-sm font-black'
-                      : isToday
-                        ? 'border-2 border-[#F26B0F] text-[#F26B0F] bg-[#FFF9F3]'
-                        : 'text-[#17233C] hover:bg-slate-50 border border-transparent'
-                  }`}
+                  className={`py-2.5 rounded-xl flex flex-col items-center justify-center relative font-bold transition-all ${hasQuiz
+                    ? 'bg-gradient-to-tr from-[#FF8A1F] to-[#F26B0F] text-white shadow-sm font-black'
+                    : isToday
+                      ? 'border-2 border-[#F26B0F] text-[#F26B0F] bg-[#FFF9F3]'
+                      : 'text-[#17233C] hover:bg-slate-50 border border-transparent'
+                    }`}
                   title={hasQuiz ? "Quiz Taken" : isToday ? "Today" : ""}
                 >
                   <span className="text-xs">{day}</span>
@@ -218,7 +215,7 @@ export const ActivityStreak: React.FC = () => {
               <span className="text-[#F26B0F] font-black">{progressData.streak_days} / 5 Days</span>
             </div>
             <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-              <div 
+              <div
                 className="bg-gradient-to-r from-[#FF8A1F] to-[#F26B0F] h-full rounded-full transition-all duration-300"
                 style={{ width: `${Math.min(100, (progressData.streak_days / 5) * 100)}%` }}
               ></div>

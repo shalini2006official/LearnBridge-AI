@@ -4,8 +4,7 @@ import { api } from '../services/api';
 import { useAccessibility } from '../hooks/useAccessibility';
 import { type StudentProgressSummary } from '../types';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
-import { Sparkles, Flame, CheckCircle, RefreshCw, BookOpen, AlertCircle, ArrowRight, Award, Target, BrainCircuit, Activity, X, HelpCircle, Lock, Calendar, Clock } from 'lucide-react';
-
+import { Sparkles, Flame, CheckCircle, RefreshCw, BookOpen, AlertCircle, ArrowRight, Award, Target, BrainCircuit, Activity, X, HelpCircle, Lock as LockIcon, Calendar } from 'lucide-react';
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { settings } = useAccessibility();
@@ -93,16 +92,16 @@ export const Dashboard: React.FC = () => {
 
   const chartData = data.recent_mastery && data.recent_mastery.length > 0
     ? data.recent_mastery.map((m: any) => ({
-        name: m.topic_name,
-        mastery: m.mastery_score
-      }))
+      name: m.topic_name,
+      mastery: m.mastery_score
+    }))
     : [
-        { name: "Arrays", mastery: 92 },
-        { name: "Strings", mastery: 81 },
-        { name: "Linked Lists", mastery: 63 },
-        { name: "Recursion", mastery: 34 },
-        { name: "Trees", mastery: 12 }
-      ];
+      { name: "Arrays", mastery: 92 },
+      { name: "Strings", mastery: 81 },
+      { name: "Linked Lists", mastery: 63 },
+      { name: "Recursion", mastery: 34 },
+      { name: "Trees", mastery: 12 }
+    ];
 
   // Dynamically calculate study coach recommendation based on actual student progress
   const getCoachRecommendation = () => {
@@ -139,10 +138,10 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div className={`space-y-6 ${settings.liteMode ? '' : 'animate-fade-in'} text-[#17233C]`}>
-      
+
       {/* 1. Header & Continue Card */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
+
         {/* Welcome Greeting Banner */}
         <div className="lg:col-span-2 p-6 md:p-8 rounded-3xl bg-gradient-to-r from-[#FF8A1F] to-[#F26B0F] text-white relative overflow-hidden shadow-md flex flex-col justify-between min-h-[180px]">
           <div className="relative z-10 space-y-3">
@@ -157,10 +156,10 @@ export const Dashboard: React.FC = () => {
               Your explanation models are active. Let's strengthen your conceptual retention.
             </p>
           </div>
-          
+
           <div className="mt-4 pt-4 border-t border-white/10 flex justify-between items-center z-10">
             <span className="text-xs text-white/90 font-bold">Target Topic: {activeTopicName}</span>
-            <button 
+            <button
               onClick={() => navigate('/chat')}
               className="bg-white text-[#F26B0F] hover:bg-brand-50 text-xs font-extrabold px-4 py-2 rounded-xl flex items-center gap-1 shadow-sm transition-all cursor-pointer"
             >
@@ -188,7 +187,7 @@ export const Dashboard: React.FC = () => {
                 <span className="text-[#17233C]">{activeTopicScore}%</span>
               </div>
               <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                <div 
+                <div
                   className="bg-gradient-to-r from-[#FF8A1F] to-[#F26B0F] h-full rounded-full transition-all duration-500"
                   style={{ width: `${activeTopicScore}%` }}
                 ></div>
@@ -245,7 +244,7 @@ export const Dashboard: React.FC = () => {
                         <h4 className="font-extrabold text-sm text-[#17233C]">{item.name}</h4>
                       </div>
                       <p className="text-xs text-[#52627A] font-bold">{item.description}</p>
-                      
+
                       {item.type === 'topic' && item.prerequisites.length > 0 && (
                         <div className="flex flex-wrap gap-2 pt-1">
                           <span className="text-[10px] font-bold text-[#52627A] bg-slate-100 px-2 py-0.5 rounded">Prereqs: {item.prerequisites.join(', ')}</span>
@@ -422,7 +421,7 @@ export const Dashboard: React.FC = () => {
 
       {/* 2. Learning Pulse Metrics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-        
+
         {/* Mastery */}
         <div className="p-5 rounded-2xl border border-[#E2E8F0] bg-white shadow-sm flex items-center justify-between hover:-translate-y-0.5 transition-all">
           <div className="space-y-0.5">
@@ -482,17 +481,17 @@ export const Dashboard: React.FC = () => {
 
       {/* 3. Spaced Recommendations & Mission */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
+
         {/* Left Col (2 Columns): Today's Mission & Mastery Breakdown */}
         <div className="lg:col-span-2 space-y-6">
-          
+
           {/* Today's learning mission */}
           <div className="p-6 rounded-2xl border border-[#E2E8F0] bg-white shadow-sm space-y-4">
             <div className="flex items-center gap-2 border-b pb-2">
               <Target className="w-5 h-5 text-[#FF8A1F]" />
               <h3 className="font-extrabold text-base text-[#17233C]">Today's Learning Mission</h3>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-bold text-[#17233C]">
               <div className="space-y-2.5">
                 <div className="flex items-center gap-2">
@@ -525,7 +524,7 @@ export const Dashboard: React.FC = () => {
                 </div>
                 <span className="text-[#17233C]">75%</span>
               </div>
-              <button 
+              <button
                 onClick={() => navigate('/quiz')}
                 className="bg-[#FFF9F3] text-[#F26B0F] hover:bg-[#FFEBD6] text-xs font-extrabold px-4 py-2 rounded-xl transition-all cursor-pointer border border-[#FF8A1F]/20"
               >
@@ -554,7 +553,7 @@ export const Dashboard: React.FC = () => {
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255, 138, 31, 0.12)" />
                     <XAxis dataKey="name" stroke="#52627A" fontSize={11} tickLine={false} />
                     <YAxis stroke="#52627A" fontSize={11} domain={[0, 100]} tickLine={false} />
-                    <Tooltip 
+                    <Tooltip
                       contentStyle={{ background: '#FFFFFF', border: '1px solid rgba(255, 138, 31, 0.2)', borderRadius: '12px', fontSize: '11px', color: '#17233C' }}
                       cursor={{ fill: 'rgba(255, 138, 31, 0.04)' }}
                     />
@@ -639,7 +638,7 @@ export const Dashboard: React.FC = () => {
               {/* Speech bubble */}
               <div className="bg-white border border-[#FF8A1F]/15 p-4 rounded-2xl shadow-sm space-y-2.5 relative">
                 <div className="absolute left-[-6px] top-4 w-3 h-3 bg-white border-l border-b border-[#FF8A1F]/15 rotate-45"></div>
-                
+
                 <p className="text-xs font-bold text-[#17233C] leading-relaxed">
                   Hi {studentName} 👋
                 </p>
@@ -649,7 +648,7 @@ export const Dashboard: React.FC = () => {
                 <p className="text-xs text-[#52627A] font-semibold leading-relaxed">
                   Your next best topic is <span className="font-extrabold text-[#F26B0F]">{coachRec?.next}</span> because your {coachRec?.best} fundamentals are strong.
                 </p>
-                
+
                 {showCoachWhy && (
                   <div className="pt-2 border-t border-[#FF8A1F]/10 text-[10px] text-[#52627A] leading-relaxed font-bold animate-fade-in">
                     💡 <b>Why this?</b> {coachRec?.why}
@@ -697,7 +696,7 @@ export const Dashboard: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
+
           {/* Mastery bar list */}
           <div className="space-y-3">
             <div className="space-y-1 text-xs font-bold">
@@ -800,7 +799,7 @@ export const Dashboard: React.FC = () => {
                 <span className="text-[#17233C]">{Math.round((data.recent_mastery.filter(m => m.mastery_score >= 70).length / 1) * 100)}%</span>
               </div>
               <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                <div 
+                <div
                   className="bg-[#FF8A1F] h-full rounded-full transition-all duration-300"
                   style={{ width: `${(data.recent_mastery.filter(m => m.mastery_score >= 70).length / 1) * 100}%` }}
                 ></div>
@@ -855,18 +854,17 @@ export const Dashboard: React.FC = () => {
             );
 
             return (
-              <div 
-                key={item.title} 
-                className={`p-4 rounded-xl border flex items-center gap-3 relative transition-all ${
-                  isUnlocked 
-                    ? 'border-[#FF8A1F]/20 bg-[#FFF9F3] shadow-sm animate-pulse-subtle'
-                    : 'border-slate-100 bg-slate-50/50 opacity-60'
-                }`}
+              <div
+                key={item.title}
+                className={`p-4 rounded-xl border flex items-center gap-3 relative transition-all ${isUnlocked
+                  ? 'border-[#FF8A1F]/20 bg-[#FFF9F3] shadow-sm animate-pulse-subtle'
+                  : 'border-slate-100 bg-slate-50/50 opacity-60'
+                  }`}
               >
                 {/* Lock icon overlay for locked items */}
                 {!isUnlocked && (
                   <div className="absolute top-2 right-2 text-slate-400 animate-none" title="Locked">
-                    <Lock className="w-3.5 h-3.5" />
+                    <LockIcon className="w-3.5 h-3.5" />
                   </div>
                 )}
                 {isUnlocked && (
@@ -881,9 +879,8 @@ export const Dashboard: React.FC = () => {
                 <div className="min-w-0 pr-2">
                   <h4 className="font-extrabold text-xs truncate text-[#17233C]">{item.title}</h4>
                   <p className="text-[9px] text-[#64748B] font-semibold leading-snug">{item.description}</p>
-                  <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded mt-1.5 inline-block ${
-                    isUnlocked ? 'bg-orange-100 text-[#F26B0F]' : 'bg-slate-200 text-slate-500'
-                  }`}>
+                  <span className={`text-[8px] font-bold px-1.5 py-0.5 rounded mt-1.5 inline-block ${isUnlocked ? 'bg-orange-100 text-[#F26B0F]' : 'bg-slate-200 text-slate-500'
+                    }`}>
                     {item.reward}
                   </span>
                 </div>
@@ -971,13 +968,12 @@ export const Dashboard: React.FC = () => {
                     <button
                       key={opt}
                       onClick={() => setSandboxQ1Answer(opt)}
-                      className={`w-full text-left py-3 px-4 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
-                        sandboxQ1Answer === opt
-                          ? opt.includes("Base Case")
-                            ? 'bg-emerald-50 border-emerald-500 text-emerald-700'
-                            : 'bg-rose-50 border-rose-500 text-rose-700'
-                          : 'bg-white hover:bg-slate-50 border-[#CBD5E1] text-[#17233C]'
-                      }`}
+                      className={`w-full text-left py-3 px-4 rounded-xl text-xs font-bold border transition-all cursor-pointer ${sandboxQ1Answer === opt
+                        ? opt.includes("Base Case")
+                          ? 'bg-emerald-50 border-emerald-500 text-emerald-700'
+                          : 'bg-rose-50 border-rose-500 text-rose-700'
+                        : 'bg-white hover:bg-slate-50 border-[#CBD5E1] text-[#17233C]'
+                        }`}
                     >
                       {opt}
                     </button>
@@ -1016,13 +1012,12 @@ export const Dashboard: React.FC = () => {
                     <button
                       key={opt}
                       onClick={() => setSandboxQ2Answer(opt)}
-                      className={`w-full text-left py-3 px-4 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
-                        sandboxQ2Answer === opt
-                          ? opt.includes("Stack Overflow")
-                            ? 'bg-emerald-50 border-emerald-500 text-emerald-700'
-                            : 'bg-rose-50 border-rose-500 text-rose-700'
-                          : 'bg-white hover:bg-slate-50 border-[#CBD5E1] text-[#17233C]'
-                      }`}
+                      className={`w-full text-left py-3 px-4 rounded-xl text-xs font-bold border transition-all cursor-pointer ${sandboxQ2Answer === opt
+                        ? opt.includes("Stack Overflow")
+                          ? 'bg-emerald-50 border-emerald-500 text-emerald-700'
+                          : 'bg-rose-50 border-rose-500 text-rose-700'
+                        : 'bg-white hover:bg-slate-50 border-[#CBD5E1] text-[#17233C]'
+                        }`}
                     >
                       {opt}
                     </button>
@@ -1101,14 +1096,14 @@ export const Dashboard: React.FC = () => {
       {showCertificate && (
         <div className="fixed inset-0 bg-slate-900/80 z-50 flex items-center justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-3xl p-8 max-w-3xl w-full border border-[#FF8A1F]/30 shadow-2xl relative flex flex-col justify-between gap-6 print:p-0 print:border-none print:shadow-none animate-slide-up">
-            
+
             {/* Modal header (hidden in print) */}
             <div className="flex justify-between items-center border-b pb-4 print:hidden">
               <h3 className="font-black text-base text-[#17233C] flex items-center gap-2">
                 <Award className="w-5 h-5 text-[#FF8A1F]" />
                 Your Digital Certificate
               </h3>
-              <button 
+              <button
                 onClick={() => setShowCertificate(false)}
                 className="text-[#52627A] hover:text-[#17233C] text-xs font-black cursor-pointer bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg border-none"
               >
@@ -1117,8 +1112,8 @@ export const Dashboard: React.FC = () => {
             </div>
 
             {/* Printable Certificate Layout */}
-            <div 
-              id="printable-certificate" 
+            <div
+              id="printable-certificate"
               className="p-8 md:p-12 border-8 border-double border-[#FF8A1F] bg-[#FFF9F3]/30 rounded-2xl flex flex-col items-center justify-between gap-6 text-center shadow-inner relative overflow-hidden"
               style={{ minHeight: '520px' }}
             >
@@ -1145,8 +1140,8 @@ export const Dashboard: React.FC = () => {
 
               <div className="space-y-4 max-w-lg mx-auto z-10 text-xs md:text-sm leading-relaxed text-[#52627A] font-semibold">
                 <p>
-                  For successfully completing the comprehensive **Advanced Data Structures & Algorithms** adaptive curriculum. 
-                  You have demonstrated exceptional retention, conceptual mastery, and code execution capability across recursive architectures, 
+                  For successfully completing the comprehensive **Advanced Data Structures & Algorithms** adaptive curriculum.
+                  You have demonstrated exceptional retention, conceptual mastery, and code execution capability across recursive architectures,
                   tree structures, and sequential search protocols, validated by LearnBridge AI Tutor models.
                 </p>
               </div>
@@ -1154,8 +1149,8 @@ export const Dashboard: React.FC = () => {
               {/* Mastered topics pills */}
               <div className="flex flex-wrap items-center justify-center gap-1.5 z-10 max-w-md">
                 {data.recent_mastery.filter(m => m.mastery_score >= 70).map((t, idx) => (
-                  <span 
-                    key={idx} 
+                  <span
+                    key={idx}
                     className="bg-[#FFF9F3] border border-[#FF8A1F]/20 text-[#C8540A] text-[9px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full animate-pulse-glow"
                   >
                     {t.topic_name}
@@ -1185,7 +1180,7 @@ export const Dashboard: React.FC = () => {
 
               {/* Validation Hash */}
               <div className="text-[8px] font-mono text-[#64748B] select-all z-10 mt-2 uppercase">
-                Credential ID: LB-CERT-{studentName.substring(0,3).toUpperCase()}-{Math.floor(100000 + Math.random() * 900000)}
+                Credential ID: LB-CERT-{studentName.substring(0, 3).toUpperCase()}-{Math.floor(100000 + Math.random() * 900000)}
               </div>
             </div>
 
