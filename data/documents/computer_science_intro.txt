@@ -1,0 +1,20 @@
+# LearnBridge CS 101: Introduction to Algorithms
+
+## Lesson 1: Recursion Fundamentals
+Recursion is an essential computational paradigm where a function solves a problem by calling itself with smaller inputs. Every correct recursive function must define two key properties:
+1. The Base Case: A condition that stops the recursion from proceeding. For example, in a factorial calculation, the base case is when n is less than or equal to 1, returning 1. Without a base case, recursion executes infinitely, consuming memory frames until the runtime environment terminates with a Stack Overflow error.
+2. The Recursive Step: Calling the function itself with arguments that move closer to the base case. For instance, return n * factorial(n - 1).
+
+The execution of recursion relies on the Call Stack. Each nested call pushes a new frame onto the stack storing local arguments and return addresses. When the base case is reached, the stack frames resolve in Last-In First-Out (LIFO) order, returning outputs back to the original call scope.
+
+## Lesson 2: Binary Search
+Binary Search is a divide-and-conquer algorithm that finds the position of a target value within a sorted array. It exhibits logarithmic time complexity, represented as O(log n) in the worst case, making it far superior to O(n) sequential linear searches.
+
+The algorithm compares the target value to the middle element of the array:
+- If they are equal, the position is returned.
+- If the target is smaller, the search continues in the lower half.
+- If the target is larger, the search continues in the upper half.
+
+Prerequisites:
+- The array elements MUST be sorted beforehand. Binary search will yield incorrect coordinates or run infinitely if the array is unsorted.
+- Accessing the array must support O(1) random-access index operations (standard lists or arrays).

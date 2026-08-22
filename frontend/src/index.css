@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #FFF9F3;
+  --color-brand-100: #FFEBD6;
+  --color-brand-200: #FFD4A8;
+  --color-brand-300: #FFAE5C;
+  --color-brand-400: #FF9E3D;
+  --color-brand-500: #FF8A1F; /* Primary Saffron */
+  --color-brand-600: #F26B0F; /* Secondary Deep Saffron */
+  --color-brand-700: #C95305;
+  --color-brand-850: #FFD4A8;
+  
+  --shadow-glass: 0 10px 30px 0 rgba(255, 138, 31, 0.06);
+}
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    background-color: #FFFFFF;
+    background-image: radial-gradient(circle at 10% 20%, #FFFFFF 0%, #FFFDFB 50%, #FFF9F3 100%);
+    @apply text-[#0A0F1D] transition-colors duration-300 overflow-x-hidden min-h-screen;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+    font-weight: 500;
+  }
+  
+  body.dark {
+    background-color: #0b0f19;
+    background-image: radial-gradient(circle at 10% 20%, #0b0f19 0%, #0f172a 100%);
+    color: #ffffff !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+  }
+
+  /* Force strong, high-contrast, non-blurry text rendering globally */
+  p, span, li, a, td, th, button, input, select, textarea {
+    font-weight: 600 !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+  }
+
+  /* Accessibility size scaling */
+  body.text-small { font-size: 0.875rem; }
+  body.text-medium { font-size: 1rem; }
+  body.text-large { font-size: 1.125rem; }
+  body.text-xlarge { font-size: 1.25rem; }
+
+  /* High contrast mode adjustments */
+  body.high-contrast {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+}
+
+/* Glassmorphism Styling with Saffron Shadows */
+.glass-card {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(255, 138, 31, 0.12);
+  box-shadow: var(--shadow-glass);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.dark .glass-card {
+  background: rgba(17, 24, 39, 0.95);
+  border: 1px solid rgba(255, 138, 31, 0.15);
+  box-shadow: var(--shadow-glass);
+}
+
+body.high-contrast .glass-card {
+  background: transparent !important;
+  border: 2px solid #000000 !important;
+  box-shadow: none !important;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(0.5deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.03); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Saffron Gradients */
+.text-gradient-cosmic {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#FF8A1F] to-[#F26B0F];
+}
+
+.text-gradient-indigo {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#FF8A1F] to-[#F26B0F];
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 138, 31, 0.18);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 138, 31, 0.4);
+}
+
+/* Global Dark Mode Container Overrides */
+.dark body {
+  background-color: #0b0f19 !important;
+  color: #f1f5f9 !important;
+}
+
+.dark aside,
+.dark header,
+.dark .bg-white,
+.dark div.bg-white,
+.dark main.bg-white {
+  background-color: #111827 !important;
+  color: #f1f5f9 !important;
+  border-color: #1f2937 !important;
+}
+
+.dark .border,
+.dark .border-slate-100,
+.dark .border-slate-200,
+.dark .border-slate-250,
+.dark .border-slate-200\/60,
+.dark .border-slate-350,
+.dark .border-slate-300 {
+  border-color: #1f2937 !important;
+}
+
+.dark select,
+.dark input,
+.dark textarea {
+  background-color: #0b0f19 !important;
+  color: #f1f5f9 !important;
+  border-color: #1f2937 !important;
+}
+
+.dark button.bg-white,
+.dark a.bg-white,
+.dark .bg-slate-50,
+.dark div.bg-slate-50 {
+  background-color: #1f2937 !important;
+  color: #f8fafc !important;
+  border-color: #374151 !important;
+}
+
+.dark .text-\[\#17233C\] {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-\[\#52627A\] {
+  color: #94a3b8 !important;
+}
+
+.dark .text-\[\#64748B\] {
+  color: #64748b !important;
+}
+
+/* High visibility contrast overrides for light mode text */
+.text-slate-400, .text-slate-500, .text-slate-600, .text-slate-700,
+.text-\[\#52627A\], .text-\[\#64748B\], .text-slate-450 {
+  color: #0A0F1D !important;
+}
+
+/* High visibility contrast overrides for dark mode text */
+.dark .text-slate-400, .dark .text-slate-550, .dark .text-slate-500, .dark .text-slate-600, .dark .text-slate-700,
+.dark .text-\[\#52627A\], .dark .text-\[\#64748B\], .dark .text-slate-450 {
+  color: #f1f5f9 !important;
+}
+
+/* Printable Certificate styles */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  #printable-certificate, #printable-certificate * {
+    visibility: visible !important;
+  }
+  #printable-certificate {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: 8px double #FF8A1F !important;
+    background-color: #FFF9F3 !important;
+    padding: 3rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+}
